@@ -2,9 +2,9 @@
 /*
 Plugin Name: Force email login
 Author: Takayuki Miyauchi
-Plugin URI: http://wpist.me/
+Plugin URI: https://github.com/miya0001/force-email-login
 Description: Use email address for login to your WordPress.
-Version: 0.3.0
+Version: 0.4.0
 Author URI: http://wpist.me/
 */
 
@@ -21,8 +21,6 @@ public function plugins_loaded()
 {
     if (get_transient('force_email_login_lockdown') && isset($_POST['log'])) {
         wp_die('Please retry after a few seconds.');
-    } elseif (isset($_POST['log'], $_POST['pwd']) && !is_email($_POST['log'])) {
-        wp_die('Auth failed.');
     }
 
     remove_filter('authenticate', 'wp_authenticate_username_password', 20, 3);
